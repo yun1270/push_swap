@@ -20,12 +20,12 @@ void push(int num, t_stack *s)
 	newnode->num = num;
 	newnode->link = s->head;
 	s->head = newnode;
-    s->size++;
+	s->size++;
 }
 
 void push_to(t_stack *a, t_stack *b)
 {
-    t_node *top;
+	t_node *top;
 
 	top = a->head;
 	push(top->num, b);
@@ -52,7 +52,7 @@ void rotate(t_stack *s)
 
 	temp = s->head;
 	find = s->head;
-	while(find->link)
+	while (find->link)
 		find = find->link;
 	find->link = temp;
 	s->head = temp->link;
@@ -75,11 +75,11 @@ void rev_rotate(t_stack *s)
 	push(find->num, s);
 }
 
-static void		sort_buf(int *buf, int size)
+static void sort_buf(int *buf, int size)
 {
-	int		temp;
-	int		i;
-	int		j;
+	int temp;
+	int i;
+	int j;
 
 	i = 0;
 	while (i < size)
@@ -93,9 +93,9 @@ static void		sort_buf(int *buf, int size)
 				buf[i] = buf[j];
 				buf[j] = temp;
 			}
-            j++;
+			j++;
 		}
-        i++;
+		i++;
 	}
 }
 
@@ -104,14 +104,14 @@ void set_buf(int *buf, t_stack *s)
 	int i;
 	t_node *temp;
 
-    i = 0;
+	i = 0;
 	temp = s->head;
 	while (i < s->size)
 	{
 		buf[i] = temp->num;
 		temp = temp->link;
 	}
-    buf[i] = '\0';
+	buf[i] = '\0';
 	sort_buf(buf, s->size);
 }
 
@@ -119,10 +119,10 @@ void pick_pivot(t_stack *s, int *pivot)
 {
 	int *buf;
 
-    buf = malloc(sizeof(int) * (s->size + 1));
-	set_buf(buf ,s);
+	buf = malloc(sizeof(int) * (s->size + 1));
+	set_buf(buf, s);
 	pivot[0] = buf[s->size / 3];
-    pivot[1] = buf[s->size / 3 * 2];
+	pivot[1] = buf[s->size / 3 * 2];
 	free(buf);
 }
 
@@ -174,7 +174,6 @@ void pick_pivot(t_stack *s, int *pivot)
 //         ft_command("rrb");
 //     // A :: [3] [정렬]
 //     // B :: [2] [1] [고정]
-
 
 //     A_to_B(ra, s1, s2);                // [3] ~> [3_1] [3_2] [3_3]
 //     B_to_A(rb, s1, s2);                // [2]
@@ -238,13 +237,13 @@ void pick_pivot(t_stack *s, int *pivot)
 
 void print_list(t_stack *a, t_stack *b)
 {
-	int i=0;
+	int i = 0;
 	t_node *temp = a->head;
 	t_node *tmp = b->head;
-	
+
 	printf("node_CHECK ==========================================\n");
-    printf("A_size = %d\n", a->size);
-	while(temp)
+	printf("A_size = %d\n", a->size);
+	while (temp)
 	{
 		i = 1;
 		printf("A :: %d", temp->num);
@@ -254,7 +253,7 @@ void print_list(t_stack *a, t_stack *b)
 		printf("\n");
 	}
 	printf("\n");
-    printf("B_size = %d\n", b->size);
+	printf("B_size = %d\n", b->size);
 	while (tmp)
 	{
 		i = 1;
@@ -271,8 +270,8 @@ int main(int argc, char *argv[])
 	t_stack *a, *b;
 	a = malloc(sizeof(t_stack));
 	b = malloc(sizeof(t_stack));
-    a->size = 0;
-    b->size = 0;
+	a->size = 0;
+	b->size = 0;
 
 	// int ac = argc;
 	// while (ac-- > 1)
@@ -285,7 +284,7 @@ int main(int argc, char *argv[])
 	// 	push(num, &a);
 	// }
 
-    push(3, a);
+	push(3, a);
 	push(2, a);
 	push(6, a);
 	push(5, a);
