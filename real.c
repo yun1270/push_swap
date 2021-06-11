@@ -13,6 +13,67 @@ typedef struct s_stack
 	struct s_node *head;
 } t_stack;
 
+void	ft_putstr_fd(char *s, int fd)
+{
+	if (!s || fd < 0)
+		return ;
+	write(fd, s, ft_strlen(s));
+}
+size_t	ft_strlen(const char *s)
+{
+	int	i;
+
+	i = 0;
+	while (s[i])
+		i++;
+	return (i);
+}
+int	ft_strncmp(const void *s1, const void *s2, size_t n)
+{
+	unsigned char *str1;
+	unsigned char *str2;
+
+	str1 = (unsigned char *)s1;
+	str2 = (unsigned char *)s2;
+	while (n--)
+	{
+		if (*str1 == 0 || *str2 == 0 || *str1 != *str2)
+			return (*str1 - *str2);
+		str1++;
+		str2++;
+	}
+	return (0);
+}
+void print_list(t_stack *a, t_stack *b)
+{
+	int i;
+	t_node *temp = a->head;
+	t_node *tmp = b->head;
+
+	printf("node_CHECK ==========================================\n");
+	printf("A_size = %d\n", a->size);
+	for (int j=0; j < a->size; j++)
+	{
+		i = 1;
+		printf("A :: %d", temp->num);
+		while (i++ <= temp->num)
+			printf("_");
+		temp = temp->link;
+		printf("\n");
+	}
+	printf("\n");
+	printf("B_size = %d\n", b->size);
+	for (int j=0; j < b->size; j++)
+	 {
+		i = 1;
+		printf("B :: %d", tmp->num);
+		while (i++ <= tmp->num)
+			printf("_");
+		tmp = tmp->link;
+		printf("\n");
+	}
+}
+
 void push(int num, t_stack *s)
 {
 	t_node *newnode = malloc(sizeof(t_node));
@@ -28,6 +89,7 @@ void push_to(t_stack *a, t_stack *b)
 	t_node *top;
 
 	top = a->head;
+	a->size--;
 	push(top->num, b);
 	a->head = top->link;
 	free(top);
@@ -71,11 +133,12 @@ void rev_rotate(t_stack *s)
 	while (temp->link != find)
 		temp = temp->link;
 	temp->link = NULL;
-	free(find);
 	push(find->num, s);
+	s->size--;
+	free(find);
 }
 
-static void sort_buf(int *buf, int size)
+void sort_buf(int *buf, int size)
 {
 	int temp;
 	int i;
@@ -108,7 +171,7 @@ void set_buf(int *buf, t_stack *s)
 	temp = s->head;
 	while (i < s->size)
 	{
-		buf[i] = temp->num;
+		buf[i++] = temp->num;
 		temp = temp->link;
 	}
 	buf[i] = '\0';
@@ -126,143 +189,116 @@ void pick_pivot(t_stack *s, int *pivot)
 	free(buf);
 }
 
-// void A_to_B(int n, t_node *s1, t_node *s2)
-// {
-//     int pivot[2];
-//     int ra, rb, pb;
-//     t_node  *a, *b;
-
-//     a = s1->head;
-//     b = s2->head;
-//     ra = 0;
-//     rb = 0;
-//     pb = 0;
-//     if (n <= 3)
-//     {
-//         //simple_sort();
-//         return ;
-//     }
-//     pick_pivot(a, pivot);
-//     // 적절한 피봇 2개 선택
-//     // pivot[0] - 작은 피봇 , pivot[1] - 큰 피봇
-//     while (n-- > 0)
-//     {
-//         if (a->num >= pivot[1])          // [3]
-//         {
-//             ft_command("ra");
-//             ra++;
-//         }
-//         else                        // [2] [1]
-//         {
-//             ft_command("pb");
-//             pb++;
-//             if (b->num >= pivot[0])      // [2]
-//             {
-//                 ft_command("rb");
-//                 rb++;
-//             }
-//         }
-//     }
-//     // A :: [3] [정렬]
-//     // B :: [1] [고정] [2]
-
-//     int i;
-//     i = 0;
-//     while (i++ < ra)
-//         ft_command("rra");
-//     while (i++ < rb)
-//         ft_command("rrb");
-//     // A :: [3] [정렬]
-//     // B :: [2] [1] [고정]
-
-//     A_to_B(ra, s1, s2);                // [3] ~> [3_1] [3_2] [3_3]
-//     B_to_A(rb, s1, s2);                // [2]
-//     B_to_A(pb - rb, s1, s2);           // [1]
-// }
-
-// void B_to_A(int n, t_node *s1, t_node *s2)
-// {
-//     int pivot[2];
-//     int ra, rb, pa;
-//     t_node *a, *b;
-
-//     a = s1->head;
-//     b = s2->head;
-//     ra = 0;
-//     rb = 0;
-//     pa = 0;
-//     if (n <= 3)
-//     {
-//         //simple_sort();
-//         return ;
-//     }
-//     pick_pivot(b, pivot);
-//     // 적절한 피봇 2개 선택
-//     // pivot[0] - 작은 피봇 , pivot[1] - 큰 피봇
-//     while (n-- > 0)
-//     {
-//         if (b->num <= pivot[0])          // [3_1]
-//         {
-//             ft_command("rb");
-//             rb++;
-//         }
-//         else                        // [3_2] [3_3]
-//         {
-//             ft_command("pa");
-//             pa++;
-//             if (a->num <= pivot[1])      // [3_2]
-//             {
-//                 ft_command("ra");
-//                 ra++;
-//             }
-//         }
-//     }
-//     // A :: [3_3] [정렬] [3_2]
-//     // B :: [3_1] [고정]
-
-//     A_to_B(pa - ra, s1, s2);                           // [3]
-
-//     int i;
-//     i = 0;
-//     while (i++ < ra)
-//         ft_command("rra");
-//     while (i++ < rb)
-//         ft_command("rrb");
-//     // A :: [3_2] [3_3] [정렬]
-//     // B :: [3_1] [고정]
-
-//     A_to_B(ra, s1, s2);           // [2]
-//     B_to_A(rb, s1, s2);           // [1]
-// }
-
-void print_list(t_stack *a, t_stack *b)
+void ft_command(char *str, t_stack *s1, t_stack *s2)
 {
-	int i = 0;
-	t_node *temp = a->head;
-	t_node *tmp = b->head;
+	//commad 
+}
 
-	printf("node_CHECK ==========================================\n");
-	printf("A_size = %d\n", a->size);
-	while (temp)
+void B_to_A(int n, t_stack *s1, t_stack *s2);
+
+void A_to_B(int n, t_stack *s1, t_stack *s2)
+{
+	printf("A_to_B start\n");
+	int pivot[2];
+	int ra, rb, pb;
+
+	ra = 0;
+	rb = 0;
+	pb = 0;
+	if (n <= 3)
 	{
-		i = 1;
-		printf("A :: %d", temp->num);
-		while (i++ <= temp->num)
-			printf("_");
-		temp = temp->link;
-		printf("\n");
+		//simple_sort();
+		return ;
 	}
-	printf("\n");
-	printf("B_size = %d\n", b->size);
-	while (tmp)
+	pick_pivot(s1, pivot);
+	while (n--)
 	{
-		i = 1;
-		printf("B :: %d", tmp->num);
-		while (i++ <= tmp->num)
-			printf("_");
-		tmp = tmp->link;
-		printf("\n");
+		if (s1->head->num >= pivot[1])
+		{
+			// ft_command("ra");
+			rotate(s1);
+			ra++;
+		}
+		else
+		{
+			// ft_command("pb");
+			push_to(s1, s2);
+			pb++;
+			if (s2->head->num >= pivot[0])
+			{
+				// ft_command("rb");
+				rotate(s2);
+				rb++;
+			}
+		}
 	}
+
+	int i=0;
+	while (i++ < ra)
+		rev_rotate(s1);
+		// ft_command("rra");
+	i = 0;
+	while (i++ < rb)
+		rev_rotate(s2);
+		// ft_command("rrb");
+
+	A_to_B(ra, s1, s2);
+	B_to_A(rb, s1, s2);
+	B_to_A(pb - rb, s1, s2);
+}
+
+void B_to_A(int n, t_stack *s1, t_stack *s2)
+{
+	printf("B_to_A start\n");
+	int pivot[2];
+	int ra, rb, pa;
+
+	ra = 0;
+	rb = 0;
+	pa = 0;
+	if (n <= 3)
+	{
+		//simple_sort();
+		while (n--) push_to(s2, s1);
+		return;
+	}
+	pick_pivot(s2, pivot);
+	while (n--)
+	{
+		if (s2->head->num <= pivot[0])
+		{
+			rotate(s2);
+			// ft_command("rb");
+			rb++;
+		}
+		else
+		{
+			push_to(s2, s1);
+			// ft_command("pa");
+			pa++;
+			if (s1->head->num <= pivot[1])
+			{
+				rotate(s1);
+				// ft_command("ra");
+				ra++;
+			}
+		}
+	}
+
+	A_to_B(pa - ra, s1, s2);
+
+	int i;
+	i = 0;
+	while (i++ < ra)
+		//ft_command("rra");
+		rev_rotate(s1);
+		i = 0;
+	while (i++ < rb)
+		//ft_command("rrb");
+		rev_rotate(s2);
+
+	A_to_B(ra, s1, s2);
+	B_to_A(rb, s1, s2);
 }
 
 int main(int argc, char *argv[])
@@ -273,7 +309,7 @@ int main(int argc, char *argv[])
 	a->size = 0;
 	b->size = 0;
 
-	// int ac = argc;
+	int ac = argc;
 	// while (ac-- > 1)
 	// {
 	// 	if (is_num(argv[ac]) == 0)
@@ -285,10 +321,20 @@ int main(int argc, char *argv[])
 	// }
 
 	push(3, a);
+	push(24, a);
 	push(2, a);
+	push(44, a);
 	push(6, a);
 	push(5, a);
+	push(-24, a);
 	push(1, a);
 	push(4, a);
+	push(14, a);
+	push(-14, a);
 	print_list(a, b);
+
+	// A_to_B(a->size, a, b);
+	print_list(a, b);
+
+
 }
