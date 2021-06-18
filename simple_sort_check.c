@@ -2,8 +2,8 @@
 
 static void	check_012(int *s, t_stack *s1, t_stack *s2)
 {
-	char size[4];
-	int i;
+	char	size[4];
+	int		i;
 
 	i = -1;
 	while (++i < 3)
@@ -23,8 +23,8 @@ static void	check_012(int *s, t_stack *s1, t_stack *s2)
 
 static void	check_210(int *s, t_stack *s1, t_stack *s2)
 {
-	char size[4];
-	int i;
+	char	size[4];
+	int		i;
 
 	i = -1;
 	while (++i < 3)
@@ -44,9 +44,9 @@ static void	check_210(int *s, t_stack *s1, t_stack *s2)
 
 static void	set_012(int *buf, char s, t_stack *s1, t_stack *s2)
 {
-	int size[3];
-	int i;
-	int j;
+	int		size[3];
+	int		i;
+	int		j;
 
 	size[0] = 0;
 	size[1] = 0;
@@ -69,9 +69,32 @@ static void	set_012(int *buf, char s, t_stack *s1, t_stack *s2)
 		check_210(size, s1, s2);
 }
 
+void		sort_small(int n, t_stack *s1, t_stack *s2)
+{
+	int		pivot[1];
+	int		pb;
+
+	pb = 0;
+	pick_1_pivot(s1, pivot);
+	while (n--)
+	{
+		if (s1->head->num >= pivot[0])
+			ft_command_1("ra", s1, s2);
+		else
+		{
+			ft_command_1("pb", s1, s2);
+			pb++;
+		}
+	}
+	simple_sort(s1, s2);
+	simple_sort_b(s1, s2, pb);
+	while (pb--)
+		ft_command_1("pa", s1, s2);
+}
+
 void		simple_sort(t_stack *s1, t_stack *s2)
 {
-	int buf[4];
+	int		buf[4];
 
 	if (s1->size == 2)
 	{
@@ -87,7 +110,7 @@ void		simple_sort(t_stack *s1, t_stack *s2)
 
 void		simple_sort_b(t_stack *s1, t_stack *s2, int n)
 {
-	int buf[4];
+	int		buf[4];
 
 	if (n == 2)
 	{

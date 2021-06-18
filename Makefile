@@ -8,19 +8,19 @@ CFLAGS = -Wall -Wextra -Werror
 
 RM = rm -f
 
-SRCS = 	real.c\
-		./libft/ft_strcmp.c\
+SRCS = 	./libft/ft_strcmp.c\
 		./libft/ft_putchar_fd.c\
 		./libft/ft_putstr_fd.c\
 		./libft/ft_strlen.c\
 		./libft/ft_strchr.c\
 		./libft/ft_split.c\
 		./libft/ft_atoi.c\
+		push_swap.c\
 		pivot.c\
 		utils.c\
 		command.c\
 		command_check.c\
-		simple_check.c\
+		simple_sort_check.c\
 		simple_sort_a.c\
 		simple_sort_b.c
 

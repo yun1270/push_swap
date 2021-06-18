@@ -1,10 +1,10 @@
 #include "push_swap.h"
 
-void sort_buf(int *buf, int size)
+void		sort_buf(int *buf, int size)
 {
-	int temp;
-	int i;
-	int j;
+	int		temp;
+	int		i;
+	int		j;
 
 	i = 0;
 	while (i < size)
@@ -24,10 +24,10 @@ void sort_buf(int *buf, int size)
 	}
 }
 
-void set_buf(int *buf, t_stack *s)
+void		set_buf(int *buf, t_stack *s)
 {
-	int i;
-	t_node *temp;
+	int		i;
+	t_node	*temp;
 
 	i = 0;
 	temp = s->head;
@@ -39,9 +39,9 @@ void set_buf(int *buf, t_stack *s)
 	buf[i] = '\0';
 }
 
-void pick_2_pivot(t_stack *s, int *pivot)
+void		pick_2_pivot(t_stack *s, int *pivot)
 {
-	int *buf;
+	int		*buf;
 
 	buf = malloc(sizeof(int) * (s->size + 1));
 	set_buf(buf, s);
@@ -51,9 +51,9 @@ void pick_2_pivot(t_stack *s, int *pivot)
 	free(buf);
 }
 
-void pick_1_pivot(t_stack *s, int *pivot)
+void		pick_1_pivot(t_stack *s, int *pivot)
 {
-	int *buf;
+	int		*buf;
 
 	buf = malloc(sizeof(int) * (s->size + 1));
 	set_buf(buf, s);

@@ -1,8 +1,8 @@
 #include "push_swap.h"
 
-void push(int num, t_stack *s)
+void		push(int num, t_stack *s)
 {
-	t_node *newnode = malloc(sizeof(t_node));
+	t_node	*newnode = malloc(sizeof(t_node));
 
 	newnode->num = num;
 	newnode->link = s->head;
@@ -10,9 +10,9 @@ void push(int num, t_stack *s)
 	s->size++;
 }
 
-void push_to(t_stack *a, t_stack *b)
+void		push_to(t_stack *a, t_stack *b)
 {
-	t_node *top;
+	t_node	*top;
 
 	top = a->head;
 	a->size--;
@@ -21,10 +21,10 @@ void push_to(t_stack *a, t_stack *b)
 	free(top);
 }
 
-void swap(t_stack *s)
+void		swap(t_stack *s)
 {
-	t_node *a;
-	t_node *b;
+	t_node	*a;
+	t_node	*b;
 
 	a = s->head;
 	b = s->head->link;
@@ -33,10 +33,10 @@ void swap(t_stack *s)
 	s->head = b;
 }
 
-void rotate(t_stack *s)
+void		rotate(t_stack *s)
 {
-	t_node *temp;
-	t_node *find;
+	t_node	*temp;
+	t_node	*find;
 
 	temp = s->head;
 	find = s->head;
@@ -47,10 +47,10 @@ void rotate(t_stack *s)
 	temp->link = NULL;
 }
 
-void rev_rotate(t_stack *s)
+void		rev_rotate(t_stack *s)
 {
-	t_node *temp;
-	t_node *find;
+	t_node	*temp;
+	t_node	*find;
 
 	temp = s->head;
 	find = s->head;

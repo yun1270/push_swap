@@ -28,9 +28,10 @@ void print_list(t_stack *a, t_stack *b)
 		tmp = tmp->link;
 		printf("\n");
 	}
+	printf("==========================================\n");
 }
 
-void rrr_ab(int ra, int rb, t_stack *s1, t_stack *s2)
+void	rrr_ab(int ra, int rb, t_stack *s1, t_stack *s2)
 {
 	int	rr_cnt;
 	int r_cnt;
@@ -57,7 +58,7 @@ void rrr_ab(int ra, int rb, t_stack *s1, t_stack *s2)
 void	A_to_B(int n, t_stack *s1, t_stack *s2)
 {
 	printf("A_to_B start\n");
-	print_list(s1, s2);
+	// print_list(s1, s2);
 	int	pivot[2];
 	int	ra;
 	int	rb;
@@ -69,7 +70,7 @@ void	A_to_B(int n, t_stack *s1, t_stack *s2)
 	if (n <= 3)
 	{
 		simple_sort(s1, s2);
-		return;
+		return ;
 	}
 	pick_2_pivot(s1, pivot);
 	while (n--)
@@ -99,7 +100,7 @@ void	A_to_B(int n, t_stack *s1, t_stack *s2)
 void	B_to_A(int n, t_stack *s1, t_stack *s2)
 {
 	printf("B_to_A start\n");
-	print_list(s1, s2);
+	// print_list(s1, s2);
 	int	pivot[2];
 	int	ra;
 	int	rb;
@@ -140,25 +141,6 @@ void	B_to_A(int n, t_stack *s1, t_stack *s2)
 	B_to_A(rb, s1, s2);
 }
 
-int		check_av(char *str)
-{
-	int	i;
-
-	i = 0;
-	if (str[i] == '-' && ('0' <= str[i + 1] && str[i + 1] <= '9'))
-		i++;
-	if (str[i] == '-' && !('0' <= str[i + 1] && str[i + 1] <= '9'))
-		return (0);
-	while (str[i])
-	{
-		if ('0' <= str[i] && str[i] <= '9')
-			i++;
-		else
-			return (0);
-	}
-	return (1);
-}
-
 int			main(int ac, char *av[])
 {
 	t_stack	*a;
@@ -166,36 +148,14 @@ int			main(int ac, char *av[])
 	
 	a = malloc(sizeof(t_stack));
 	b = malloc(sizeof(t_stack));
-	a->size = 0;
-	b->size = 0;
-
-	int i;
-	long long num;
-
-	i = 0;
-	if (ac == 1)
-        return (0);
-    if (ac == 2 && ft_strchr(av[1], ' '))
-        av = ft_split(av[1], ' ');
-	while (++i < ac)
-	{
-		if (check_av(av[i]) == 0)
-			error();
-		num = ft_atoi(av[i]);
-		if (num < INT_MIN || num > INT_MAX)
-			error();
-		push(num, a);
-	}
+	set_stack(ac, av, a, b);
 	print_list(a, b);
 
-	if (a->size == 3)
+	if (a->size <= 3)
 		simple_sort(a, b);
-	
-
-	// if (a->size <= 6)
-	// 	small_A_to_B(a->size, a, b);
+	else if (a->size <= 6)
+		sort_small(a->size, a, b);
 	else
 		A_to_B(a->size, a, b);
-	// simple_sort(a,b);
 	print_list(a, b);
 }
