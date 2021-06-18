@@ -1,49 +1,5 @@
-#include <stdio.h>
-#include <stdlib.h>
+#include "push_swap.h"
 
-typedef struct s_node
-{
-	int num;
-	struct s_node *link;
-} t_node;
-
-typedef struct s_stack
-{
-	int size;
-	struct s_node *head;
-} t_stack;
-
-void	ft_putstr_fd(char *s, int fd)
-{
-	if (!s || fd < 0)
-		return ;
-	write(fd, s, ft_strlen(s));
-}
-size_t	ft_strlen(const char *s)
-{
-	int	i;
-
-	i = 0;
-	while (s[i])
-		i++;
-	return (i);
-}
-int	ft_strncmp(const void *s1, const void *s2, size_t n)
-{
-	unsigned char *str1;
-	unsigned char *str2;
-
-	str1 = (unsigned char *)s1;
-	str2 = (unsigned char *)s2;
-	while (n--)
-	{
-		if (*str1 == 0 || *str2 == 0 || *str1 != *str2)
-			return (*str1 - *str2);
-		str1++;
-		str2++;
-	}
-	return (0);
-}
 void print_list(t_stack *a, t_stack *b)
 {
 	int i;
@@ -52,7 +8,7 @@ void print_list(t_stack *a, t_stack *b)
 
 	printf("node_CHECK ==========================================\n");
 	printf("A_size = %d\n", a->size);
-	for (int j=0; j < a->size; j++)
+	for (int j = 0; j < a->size; j++)
 	{
 		i = 1;
 		printf("A :: %d", temp->num);
@@ -63,8 +19,8 @@ void print_list(t_stack *a, t_stack *b)
 	}
 	printf("\n");
 	printf("B_size = %d\n", b->size);
-	for (int j=0; j < b->size; j++)
-	 {
+	for (int j = 0; j < b->size; j++)
+	{
 		i = 1;
 		printf("B :: %d", tmp->num);
 		while (i++ <= tmp->num)
@@ -74,267 +30,172 @@ void print_list(t_stack *a, t_stack *b)
 	}
 }
 
-void push(int num, t_stack *s)
+void rrr_ab(int ra, int rb, t_stack *s1, t_stack *s2)
 {
-	t_node *newnode = malloc(sizeof(t_node));
+	int	rr_cnt;
+	int r_cnt;
 
-	newnode->num = num;
-	newnode->link = s->head;
-	s->head = newnode;
-	s->size++;
-}
-
-void push_to(t_stack *a, t_stack *b)
-{
-	t_node *top;
-
-	top = a->head;
-	a->size--;
-	push(top->num, b);
-	a->head = top->link;
-	free(top);
-}
-
-void swap(t_stack *s)
-{
-	t_node *a;
-	t_node *b;
-
-	a = s->head;
-	b = s->head->link;
-	a->link = b->link;
-	b->link = a;
-	s->head = b;
-}
-
-void rotate(t_stack *s)
-{
-	t_node *temp;
-	t_node *find;
-
-	temp = s->head;
-	find = s->head;
-	while (find->link)
-		find = find->link;
-	find->link = temp;
-	s->head = temp->link;
-	temp->link = NULL;
-}
-
-void rev_rotate(t_stack *s)
-{
-	t_node *temp;
-	t_node *find;
-
-	temp = s->head;
-	find = s->head;
-	while (find->link)
-		find = find->link;
-	while (temp->link != find)
-		temp = temp->link;
-	temp->link = NULL;
-	push(find->num, s);
-	s->size--;
-	free(find);
-}
-
-void sort_buf(int *buf, int size)
-{
-	int temp;
-	int i;
-	int j;
-
-	i = 0;
-	while (i < size)
+	if (ra < rb)
 	{
-		j = 0;
-		while (j < size)
-		{
-			if (buf[i] < buf[j])
-			{
-				temp = buf[i];
-				buf[i] = buf[j];
-				buf[j] = temp;
-			}
-			j++;
-		}
-		i++;
+		rr_cnt = ra;
+		r_cnt = rb - ra;
+		while (r_cnt--)
+			ft_command_1("rrb", s1, s2);
 	}
-}
-
-void set_buf(int *buf, t_stack *s)
-{
-	int i;
-	t_node *temp;
-
-	i = 0;
-	temp = s->head;
-	while (i < s->size)
+	else
 	{
-		buf[i++] = temp->num;
-		temp = temp->link;
+		rr_cnt = rb;
+		r_cnt = ra - rb;
+		while (r_cnt--)
+			ft_command_1("rra", s1, s2);
 	}
-	buf[i] = '\0';
-	sort_buf(buf, s->size);
+	while (rr_cnt--)
+		ft_command_1("rrr", s1, s2);
+
 }
 
-void pick_pivot(t_stack *s, int *pivot)
-{
-	int *buf;
-
-	buf = malloc(sizeof(int) * (s->size + 1));
-	set_buf(buf, s);
-	pivot[0] = buf[s->size / 3];
-	pivot[1] = buf[s->size / 3 * 2];
-	free(buf);
-}
-
-void ft_command(char *str, t_stack *s1, t_stack *s2)
-{
-	//commad 
-}
-
-void B_to_A(int n, t_stack *s1, t_stack *s2);
-
-void A_to_B(int n, t_stack *s1, t_stack *s2)
+void	A_to_B(int n, t_stack *s1, t_stack *s2)
 {
 	printf("A_to_B start\n");
-	int pivot[2];
-	int ra, rb, pb;
+	print_list(s1, s2);
+	int	pivot[2];
+	int	ra;
+	int	rb;
+	int	pb;
 
 	ra = 0;
 	rb = 0;
 	pb = 0;
 	if (n <= 3)
 	{
-		//simple_sort();
-		return ;
+		simple_sort(s1, s2);
+		return;
 	}
-	pick_pivot(s1, pivot);
+	pick_2_pivot(s1, pivot);
 	while (n--)
 	{
 		if (s1->head->num >= pivot[1])
 		{
-			// ft_command("ra");
-			rotate(s1);
+			ft_command_1("ra", s1, s2);
 			ra++;
 		}
 		else
 		{
-			// ft_command("pb");
-			push_to(s1, s2);
+			ft_command_1("pb", s1, s2);
 			pb++;
 			if (s2->head->num >= pivot[0])
 			{
-				// ft_command("rb");
-				rotate(s2);
+				ft_command_1("rb", s1, s2);
 				rb++;
 			}
 		}
 	}
-
-	int i=0;
-	while (i++ < ra)
-		rev_rotate(s1);
-		// ft_command("rra");
-	i = 0;
-	while (i++ < rb)
-		rev_rotate(s2);
-		// ft_command("rrb");
-
+	rrr_ab(ra, rb, s1, s2);
 	A_to_B(ra, s1, s2);
 	B_to_A(rb, s1, s2);
 	B_to_A(pb - rb, s1, s2);
 }
 
-void B_to_A(int n, t_stack *s1, t_stack *s2)
+void	B_to_A(int n, t_stack *s1, t_stack *s2)
 {
 	printf("B_to_A start\n");
-	int pivot[2];
-	int ra, rb, pa;
+	print_list(s1, s2);
+	int	pivot[2];
+	int	ra;
+	int	rb;
+	int	pa;
 
 	ra = 0;
 	rb = 0;
 	pa = 0;
 	if (n <= 3)
 	{
-		//simple_sort();
-		while (n--) push_to(s2, s1);
-		return;
+		simple_sort_b(s1, s2, n);
+		while (n--)
+			ft_command_1("pa", s1, s2);
+		return ;
 	}
-	pick_pivot(s2, pivot);
+	pick_2_pivot(s2, pivot);
 	while (n--)
 	{
 		if (s2->head->num <= pivot[0])
 		{
-			rotate(s2);
-			// ft_command("rb");
+			ft_command_1("rb", s1, s2);
 			rb++;
 		}
 		else
 		{
-			push_to(s2, s1);
-			// ft_command("pa");
+			ft_command_1("pa", s1, s2);
 			pa++;
 			if (s1->head->num <= pivot[1])
 			{
-				rotate(s1);
-				// ft_command("ra");
+				ft_command_1("ra", s1, s2);
 				ra++;
 			}
 		}
 	}
-
 	A_to_B(pa - ra, s1, s2);
-
-	int i;
-	i = 0;
-	while (i++ < ra)
-		//ft_command("rra");
-		rev_rotate(s1);
-		i = 0;
-	while (i++ < rb)
-		//ft_command("rrb");
-		rev_rotate(s2);
-
+	rrr_ab(ra, rb, s1, s2);
 	A_to_B(ra, s1, s2);
 	B_to_A(rb, s1, s2);
 }
 
-int main(int argc, char *argv[])
+int		check_av(char *str)
 {
-	t_stack *a, *b;
+	int	i;
+
+	i = 0;
+	if (str[i] == '-' && ('0' <= str[i + 1] && str[i + 1] <= '9'))
+		i++;
+	if (str[i] == '-' && !('0' <= str[i + 1] && str[i + 1] <= '9'))
+		return (0);
+	while (str[i])
+	{
+		if ('0' <= str[i] && str[i] <= '9')
+			i++;
+		else
+			return (0);
+	}
+	return (1);
+}
+
+int			main(int ac, char *av[])
+{
+	t_stack	*a;
+	t_stack	*b;
+	
 	a = malloc(sizeof(t_stack));
 	b = malloc(sizeof(t_stack));
 	a->size = 0;
 	b->size = 0;
 
-	int ac = argc;
-	// while (ac-- > 1)
-	// {
-	// 	if (is_num(argv[ac]) == 0)
-	// 		error();
-	// 	num = ft_atoi(argv[ac]);
-	// 	if (num < INT_MIN || num > INT_MAX)
-	// 		error();
-	// 	push(num, &a);
-	// }
+	int i;
+	long long num;
 
-	push(3, a);
-	push(24, a);
-	push(2, a);
-	push(44, a);
-	push(6, a);
-	push(5, a);
-	push(-24, a);
-	push(1, a);
-	push(4, a);
-	push(14, a);
-	push(-14, a);
+	i = 0;
+	if (ac == 1)
+        return (0);
+    if (ac == 2 && ft_strchr(av[1], ' '))
+        av = ft_split(av[1], ' ');
+	while (++i < ac)
+	{
+		if (check_av(av[i]) == 0)
+			error();
+		num = ft_atoi(av[i]);
+		if (num < INT_MIN || num > INT_MAX)
+			error();
+		push(num, a);
+	}
 	print_list(a, b);
 
-	// A_to_B(a->size, a, b);
+	if (a->size == 3)
+		simple_sort(a, b);
+	
+
+	// if (a->size <= 6)
+	// 	small_A_to_B(a->size, a, b);
+	else
+		A_to_B(a->size, a, b);
+	// simple_sort(a,b);
 	print_list(a, b);
-
-
 }
