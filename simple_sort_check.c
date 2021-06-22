@@ -1,5 +1,20 @@
 #include "push_swap.h"
 
+static void	set_buf_simple(int *buf, t_stack *s)
+{
+	int		i;
+	t_node	*temp;
+
+	i = 0;
+	temp = s->head;
+	while (i < 3)
+	{
+		buf[i++] = temp->num;
+		temp = temp->link;
+	}
+	buf[i] = '\0';
+}
+
 static void	check_012(int *s, t_stack *s1, t_stack *s2)
 {
 	char	size[4];
@@ -88,32 +103,30 @@ void		sort_small(int n, t_stack *s1, t_stack *s2)
 			pb++;
 		}
 	}
-	simple_sort(s1, s2);
-	simple_sort_b(s1, s2);
+	if (s1->size == 2 && s1->head->num > s1->head->link->num)
+		ft_command_1("sa", s1, s2);
+	else if (s1->size == 3)
+		simple_sort(s1, s2, 'a');
+	if (s2->size == 2 && s2->head->num < s2->head->link->num)
+		ft_command_1("sb", s1, s2);
+	else if (s2->size == 3)
+		simple_sort(s1, s2, 'b');
 	while (pb--)
 		ft_command_1("pa", s1, s2);
 }
 
-void		simple_sort(t_stack *s1, t_stack *s2)
+void		simple_sort(t_stack *s1, t_stack *s2, char st)
 {
 	int		buf[4];
 
-	// printf("============simple_sort start %d head->[ %d ]\n", s1->size, s1->head->num);
-	if (s1->size == 3)
+	if (st == 'a')
 	{
-		set_buf(buf, s1);
+		set_buf_simple(buf, s1);
 		set_012(buf, 'a', s1, s2);
 	}
-}
-
-void		simple_sort_b(t_stack *s1, t_stack *s2)
-{
-	int		buf[4];
-
-	// printf("============simple_sort_b start %d head->[ %d ]\n", s2->size, s2->head->num);
-	if (s2->size == 3)
+	else if (st == 'b')
 	{
-		set_buf(buf, s2);
+		set_buf_simple(buf, s2);
 		set_012(buf, 'b', s1, s2);
 	}
 }

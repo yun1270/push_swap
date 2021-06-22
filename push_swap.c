@@ -57,8 +57,6 @@ void	rrr_ab(int ra, int rb, t_stack *s1, t_stack *s2)
 
 void	A_to_B(int n, t_stack *s1, t_stack *s2)
 {
-	printf("A_to_B start %d\n", n);
-	// print_list(s1, s2);
 	int	pivot[2];
 	int	ra;
 	int	rb;
@@ -71,9 +69,8 @@ void	A_to_B(int n, t_stack *s1, t_stack *s2)
 	{
 		if (n == 2 && s1->head->num > s1->head->link->num)
 			ft_command_1("sa", s1, s2);
-		else
-			simple_sort(s1, s2);
-		// print_list(s1, s2);
+		else if (n == 3)
+			simple_sort(s1, s2, 'a');
 		return ;
 	}
 	pick_2_pivot(s1, pivot);
@@ -103,8 +100,6 @@ void	A_to_B(int n, t_stack *s1, t_stack *s2)
 
 void	B_to_A(int n, t_stack *s1, t_stack *s2)
 {
-	printf("B_to_A start %d\n", n);
-	// print_list(s1, s2);
 	int	pivot[2];
 	int	ra;
 	int	rb;
@@ -115,13 +110,12 @@ void	B_to_A(int n, t_stack *s1, t_stack *s2)
 	pa = 0;
 	if (n <= 3)
 	{
-		if (s2->head->num < s2->head->link->num)
+		if (n == 2 && s2->head->num < s2->head->link->num)
 			ft_command_1("sb", s1, s2);
-		else
-			simple_sort_b(s1, s2);
+		else if (n == 3)
+			simple_sort(s1, s2, 'b');
 		while (n--)
 			ft_command_1("pa", s1, s2);
-		// print_list(s1, s2);
 		return ;
 	}
 	pick_2_pivot(s2, pivot);
@@ -157,13 +151,20 @@ int			main(int ac, char *av[])
 	a = malloc(sizeof(t_stack));
 	b = malloc(sizeof(t_stack));
 	set_stack(ac, av, a, b);
-	print_list(a, b);
+	// print_list(a, b);
 
-	if (a->size <= 3)
-		simple_sort(a, b);
+	if (a->size == 1)
+		;
+	else if (a->size == 2)
+	{
+		if (a->head->num > a->head->link->num)
+			ft_command_1("sa", a, b);
+	}
+	else if (a->size <= 3)
+		simple_sort(a, b, 'a');
 	else if (a->size <= 6)
 		sort_small(a->size, a, b);
 	else
 		A_to_B(a->size, a, b);
-	print_list(a, b);
+	// print_list(a, b);
 }

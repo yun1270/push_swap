@@ -20,12 +20,13 @@ typedef struct		s_stack
 	struct s_node	*head;
 }					t_stack;
 
+
+void print_list(t_stack *a, t_stack *b);
+
 /***** push_swap.c *****/
 void				B_to_A(int n, t_stack *s1, t_stack *s2);
 void				A_to_B(int n, t_stack *s1, t_stack *s2);
 void				rrr_ab(int ra, int rb, t_stack *s1, t_stack *s2);
-// void	small_A_to_B(int n, t_stack *s1, t_stack *s2);
-// void	small_B_to_A(int n, t_stack *s1, t_stack *s2);
 
 /***** utils.c *****/ // ok
 void				error();
@@ -51,12 +52,12 @@ void				ft_command_1(char *str, t_stack *s1, t_stack *s2);
 void				ft_command_2(char *str, t_stack *s1, t_stack *s2);
 
 /***** simple_sort_check.c *****/ // ok
-// void				check_012(int *s, t_stack *s1, t_stack *s2);
-// void				check_210(int *s, t_stack *s1, t_stack *s2);
-// void				set_012(int *buf, t_stack *s1, t_stack *s2);
+// static void		set_buf_simple(int *buf, t_stack *s);
+// static void		check_012(int *s, t_stack *s1, t_stack *s2);
+// static void		check_210(int *s, t_stack *s1, t_stack *s2);
+// static void		set_012(int *buf, t_stack *s1, t_stack *s2);
 void				sort_small(int n, t_stack *s1, t_stack *s2);
-void				simple_sort(t_stack *s1, t_stack *s2);
-void				simple_sort_b(t_stack *s1, t_stack *s2);
+void				simple_sort(t_stack *s1, t_stack *s2, char st);
 
 /***** simple_sort_a.c *****/ // ok
 void				simple_021(t_stack *s1, t_stack *s2);
