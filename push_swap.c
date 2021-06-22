@@ -151,7 +151,7 @@ int			main(int ac, char *av[])
 	a = malloc(sizeof(t_stack));
 	b = malloc(sizeof(t_stack));
 	set_stack(ac, av, a, b);
-	// print_list(a, b);
+	print_list(a, b);
 
 	if (a->size == 1)
 		;
@@ -167,4 +167,5 @@ int			main(int ac, char *av[])
 	else
 		A_to_B(a->size, a, b);
 	// print_list(a, b);
+	exit(0);
 }

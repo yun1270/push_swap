@@ -25,7 +25,6 @@ int				check_av(char *str)
 	return (1);
 }
 
-
 void			set_stack(int ac, char **av, t_stack *s1, t_stack *s2)
 {
 	int			i;
@@ -38,7 +37,7 @@ void			set_stack(int ac, char **av, t_stack *s1, t_stack *s2)
         error();
     if (ac == 2 && ft_strchr(av[1], ' '))
         av = ft_split(av[1], ' ');
-	while (++i < ac)
+	while (av[++i])
 	{
 		if (check_av(av[i]) == 0)
 			error();

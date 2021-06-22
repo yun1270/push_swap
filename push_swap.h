@@ -30,7 +30,7 @@ void				rrr_ab(int ra, int rb, t_stack *s1, t_stack *s2);
 
 /***** utils.c *****/ // ok
 void				error();
-int					check_av(char *str);
+// int					check_av(char *str);
 void				set_stack(int ac, char **av, t_stack *s1, t_stack *s2);
 
 /***** pivot.c *****/ // ok
