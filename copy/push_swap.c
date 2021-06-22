@@ -69,11 +69,7 @@ void	A_to_B(int n, t_stack *s1, t_stack *s2)
 	pb = 0;
 	if (n <= 3)
 	{
-		if (n == 2 && s1->head->num > s1->head->link->num)
-			ft_command_1("sa", s1, s2);
-		else
-			simple_sort(s1, s2);
-		// print_list(s1, s2);
+		simple_sort(s1, s2, n);
 		return ;
 	}
 	pick_2_pivot(s1, pivot);
@@ -115,12 +111,10 @@ void	B_to_A(int n, t_stack *s1, t_stack *s2)
 	pa = 0;
 	if (n <= 3)
 	{
-		if (s2->head->num < s2->head->link->num)
-			ft_command_1("sb", s1, s2);
-		else
-			simple_sort_b(s1, s2);
+		print_list(s1, s2);
 		while (n--)
 			ft_command_1("pa", s1, s2);
+		simple_sort(s1, s2, n);
 		// print_list(s1, s2);
 		return ;
 	}
@@ -160,7 +154,7 @@ int			main(int ac, char *av[])
 	print_list(a, b);
 
 	if (a->size <= 3)
-		simple_sort(a, b);
+		simple_sort(a, b, 3);
 	else if (a->size <= 6)
 		sort_small(a->size, a, b);
 	else

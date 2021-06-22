@@ -55,7 +55,7 @@ void				ft_command_2(char *str, t_stack *s1, t_stack *s2);
 // void				check_210(int *s, t_stack *s1, t_stack *s2);
 // void				set_012(int *buf, t_stack *s1, t_stack *s2);
 void				sort_small(int n, t_stack *s1, t_stack *s2);
-void				simple_sort(t_stack *s1, t_stack *s2);
+void				simple_sort(t_stack *s1, t_stack *s2, int n);
 void				simple_sort_b(t_stack *s1, t_stack *s2);
 
 /***** simple_sort_a.c *****/ // ok
@@ -66,10 +66,10 @@ void				simple_210(t_stack *s1, t_stack *s2);
 void				simple_201(t_stack *s1, t_stack *s2);
 
 /***** simple_sort_b.c *****/ // ok
-void				b_simple_012(t_stack *s1, t_stack *s2);
-void				b_simple_021(t_stack *s1, t_stack *s2);
-void				b_simple_102(t_stack *s1, t_stack *s2);
-void				b_simple_120(t_stack *s1, t_stack *s2);
-void				b_simple_201(t_stack *s1, t_stack *s2);
+void				simple_021_b(t_stack *s1, t_stack *s2);
+void				simple_102_b(t_stack *s1, t_stack *s2);
+void				simple_120_b(t_stack *s1, t_stack *s2);
+void				simple_210_b(t_stack *s1, t_stack *s2);
+void				simple_201_b(t_stack *s1, t_stack *s2);
 
 # endif

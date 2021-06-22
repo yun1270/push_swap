@@ -1,3 +1,4 @@
+
 #include "push_swap.h"
 
 void    b_simple_012(t_stack *s1, t_stack *s2)
