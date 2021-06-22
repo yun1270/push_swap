@@ -21,16 +21,18 @@ typedef struct		s_stack
 }					t_stack;
 
 
-void print_list(t_stack *a, t_stack *b);
+// void print_list(t_stack *a, t_stack *b);
 
 /***** push_swap.c *****/
+// int				*move_a_to_b(int n, int *pivot, t_stack *s1, t_stack *s2);
+// int				*move_b_to_a(int n, int *pivot, t_stack *s1, t_stack *s2);
 void				B_to_A(int n, t_stack *s1, t_stack *s2);
 void				A_to_B(int n, t_stack *s1, t_stack *s2);
 void				rrr_ab(int ra, int rb, t_stack *s1, t_stack *s2);
 
 /***** utils.c *****/ // ok
 void				error();
-// int					check_av(char *str);
+// int				check_av(char *str);
 void				set_stack(int ac, char **av, t_stack *s1, t_stack *s2);
 
 /***** pivot.c *****/ // ok

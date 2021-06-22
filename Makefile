@@ -15,6 +15,7 @@ SRCS = 	./libft/ft_strcmp.c\
 		./libft/ft_strchr.c\
 		./libft/ft_split.c\
 		./libft/ft_atoi.c\
+		main.c\
 		push_swap.c\
 		pivot.c\
 		utils.c\
