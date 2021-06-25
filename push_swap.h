@@ -2,6 +2,7 @@
 # define PUSH_SWAP_H
 
 # include "libft/libft.h"
+# include "get_next_line/get_next_line.h"
 # include <stdio.h>
 # include <unistd.h>
 # include <stdlib.h>
@@ -20,7 +21,8 @@ typedef struct		s_stack
 	struct s_node	*head;
 }					t_stack;
 
-// void print_list(t_stack *a, t_stack *b);
+/***** checker.c *****/
+
 
 /***** push_swap.c *****/
 // int				*move_a_to_b(int n, int *pivot, t_stack *s1, t_stack *s2);
@@ -31,8 +33,10 @@ void				A_to_B(int n, t_stack *s1, t_stack *s2);
 
 /***** utils.c *****/ // ok
 void				error();
+void				check_buf(t_stack *s);
 // int				check_av(char *str);
 void				set_stack(int ac, char **av, t_stack *s1, t_stack *s2);
+int					stack_is_sorted(t_stack *s1);
 
 /***** pivot.c *****/ // ok
 void				sort_buf(int *buf, int size);
@@ -49,8 +53,8 @@ void				rev_rotate(t_stack *s);
 
 /***** command_check.c *****/ // ok
 // void				print_command(char *str);
-void				ft_command_1(char *str, t_stack *s1, t_stack *s2);
-void				ft_command_2(char *str, t_stack *s1, t_stack *s2);
+int					ft_command_1(int n, char *str, t_stack *s1, t_stack *s2);
+int					ft_command_2(int n, char *str, t_stack *s1, t_stack *s2);
 
 /***** simple_sort_check.c *****/ // ok
 // static void		set_buf_simple(int *buf, t_stack *s);

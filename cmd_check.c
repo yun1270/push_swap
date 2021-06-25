@@ -6,7 +6,7 @@ static void	print_command(char *str)
 	ft_putchar_fd('\n', 1);
 }
 
-void		ft_command_1(char *str, t_stack *s1, t_stack *s2)
+int			ft_command_1(int n, char *str, t_stack *s1, t_stack *s2)
 {
 	if (ft_strcmp(str, "sa") == 0)
 		swap(s1);
@@ -27,14 +27,13 @@ void		ft_command_1(char *str, t_stack *s1, t_stack *s2)
 		rotate(s2);
 	}
 	else
-	{
-		ft_command_2(str, s1, s2);
-		return;
-	}
-	print_command(str);
+		return (ft_command_2(n, str, s1, s2));
+	if (n == 1)
+		print_command(str);
+	return (0);
 }
 
-void		ft_command_2(char *str, t_stack *s1, t_stack *s2)
+int			ft_command_2(int n, char *str, t_stack *s1, t_stack *s2)
 {
 	if (ft_strcmp(str, "pa") == 0)
 		push_to(s2, s1);
@@ -50,6 +49,8 @@ void		ft_command_2(char *str, t_stack *s1, t_stack *s2)
 		rev_rotate(s2);
 	}
 	else
-		error();
-	print_command(str);
+		return (1);
+	if (n == 1)
+		print_command(str);
+	return (0);
 }

@@ -35,24 +35,26 @@ int			main(int ac, char *av[])
 {
 	t_stack	*a;
 	t_stack	*b;
+    char    *line;
 	
 	a = malloc(sizeof(t_stack));
 	b = malloc(sizeof(t_stack));
 	set_stack(ac, av, a, b);
-
-	if (a->size == 1)
-		exit(0);
 	check_buf(a);
-	if (a->size == 2)
-	{
-		if (a->head->num > a->head->link->num)
-			ft_command_1(1, "sa", a, b);
-	}
-	else if (a->size == 3)
-		simple_sort(a, b, 'a');
-	else if (a->size <= 6)
-		sort_small(a->size, a, b);
+
+	int i;
+    while ((i = get_next_line(0, &line)))
+    {
+		if (i == 0 && !(ft_strstr(line, "\n")))
+			break ;
+        if (ft_command_1(0, line, a, b))
+            error();
+        ft_strdel(&line);
+    }
+	
+	if (stack_is_sorted(a))
+		ft_putstr_fd("KO\n", 1);
 	else
-		A_to_B(a->size, a, b);
+		ft_putstr_fd("OK\n", 1);
 	exit(0);
 }

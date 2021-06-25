@@ -25,6 +25,32 @@ int				check_av(char *str)
 	return (1);
 }
 
+void			check_buf(t_stack *s)
+{
+	int			i;
+	int			*buf;
+
+	buf = malloc(sizeof(int) * (s->size + 1));
+	set_buf(buf, s);
+	sort_buf(buf, s->size);
+	i = 0;
+	while(++i < s->size)
+	{
+		if(buf[i] == buf[i - 1])
+			error();
+	}
+}
+
+int				ft_avlen(char **av)
+{
+	int			i;
+
+	i = 0;
+	while(*av++)
+		i++;
+	return (i);
+}
+
 void			set_stack(int ac, char **av, t_stack *s1, t_stack *s2)
 {
 	int			i;
@@ -32,12 +58,12 @@ void			set_stack(int ac, char **av, t_stack *s1, t_stack *s2)
 
 	s1->size = 0;
 	s2->size = 0;
-	i = 0;
 	if (ac == 1)
         error();
     if (ac == 2 && ft_strchr(av[1], ' '))
         av = ft_split(av[1], ' ');
-	while (av[++i])
+	i = ft_avlen(av);
+	while (--i > 0)
 	{
 		if (check_av(av[i]) == 0)
 			error();
@@ -46,4 +72,18 @@ void			set_stack(int ac, char **av, t_stack *s1, t_stack *s2)
 			error();
 		push(num, s1);
 	}
+}
+
+int				stack_is_sorted(t_stack *s1)
+{
+	t_node		*s;
+
+	s = s1->head;
+	while (s->link)
+	{
+		if (s->num >= s->link->num)
+			return (1);
+		s = s->link;
+	}
+	return (0);
 }

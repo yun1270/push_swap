@@ -96,23 +96,23 @@ void		sort_small(int n, t_stack *s1, t_stack *s2)
 	while (n--)
 	{
 		if (s1->head->num >= pivot[0])
-			ft_command_1("ra", s1, s2);
+			ft_command_1(1, "ra", s1, s2);
 		else
 		{
-			ft_command_1("pb", s1, s2);
+			ft_command_1(1, "pb", s1, s2);
 			pb++;
 		}
 	}
 	if (s1->size == 2 && s1->head->num > s1->head->link->num)
-		ft_command_1("sa", s1, s2);
+		ft_command_1(1, "sa", s1, s2);
 	else if (s1->size == 3)
 		simple_sort(s1, s2, 'a');
 	if (s2->size == 2 && s2->head->num < s2->head->link->num)
-		ft_command_1("sb", s1, s2);
+		ft_command_1(1, "sb", s1, s2);
 	else if (s2->size == 3)
 		simple_sort(s1, s2, 'b');
 	while (pb--)
-		ft_command_1("pa", s1, s2);
+		ft_command_1(1, "pa", s1, s2);
 }
 
 void		simple_sort(t_stack *s1, t_stack *s2, char st)
