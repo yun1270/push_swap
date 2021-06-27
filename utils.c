@@ -2,7 +2,7 @@
 
 void			error()
 {
-	ft_putstr_fd("Error\n", 1);
+	ft_putstr_fd("Error\n", 2);
 	exit(1);
 }
 
@@ -31,7 +31,7 @@ void			check_buf(t_stack *s)
 	int			*buf;
 
 	buf = malloc(sizeof(int) * (s->size + 1));
-	set_buf(buf, s);
+	set_buf(buf, s, s->size);
 	sort_buf(buf, s->size);
 	i = 0;
 	while(++i < s->size)

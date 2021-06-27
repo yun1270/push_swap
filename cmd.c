@@ -14,6 +14,8 @@ void		push_to(t_stack *a, t_stack *b)
 {
 	t_node	*top;
 
+	if (a->size == 0)
+		error();
 	top = a->head;
 	a->size--;
 	push(top->num, b);
@@ -26,6 +28,8 @@ void		swap(t_stack *s)
 	t_node	*a;
 	t_node	*b;
 
+	if (s->size == 0)
+		error();
 	a = s->head;
 	b = s->head->link;
 	a->link = b->link;
@@ -38,6 +42,8 @@ void		rotate(t_stack *s)
 	t_node	*temp;
 	t_node	*find;
 
+	if (s->size == 0)
+		error();
 	temp = s->head;
 	find = s->head;
 	while (find->link)
@@ -52,6 +58,8 @@ void		rev_rotate(t_stack *s)
 	t_node	*temp;
 	t_node	*find;
 
+	if (s->size == 0)
+		error();
 	temp = s->head;
 	find = s->head;
 	while (find->link)

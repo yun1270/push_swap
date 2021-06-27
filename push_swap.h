@@ -21,6 +21,8 @@ typedef struct		s_stack
 	struct s_node	*head;
 }					t_stack;
 
+void print_list(t_stack *s1, t_stack *s2);
+
 /***** push_swap.c *****/
 // void				move_a_to_b(int n, int *pivot, t_stack *s1, t_stack *s2);
 // void				move_b_to_a(int n, int *pivot, t_stack *s1, t_stack *s2);
@@ -39,9 +41,9 @@ int					stack_is_sorted(t_stack *s1);
 
 /***** pivot.c *****/ // ok
 void				sort_buf(int *buf, int size);
-void				pick_2_pivot(t_stack *s, int *pivot);
-void				pick_1_pivot(t_stack *s, int *pivot);
-void				set_buf(int *buf, t_stack *s);
+void				pick_2_pivot(t_stack *s, int *pivot, int n);
+void				pick_1_pivot(t_stack *s, int *pivot, int n);
+void				set_buf(int *buf, t_stack *s, int n);
 
 /***** command.c *****/ // ok
 void				push(int num, t_stack *s);
@@ -76,5 +78,6 @@ void				b_simple_021(t_stack *s1, t_stack *s2);
 void				b_simple_102(t_stack *s1, t_stack *s2);
 void				b_simple_120(t_stack *s1, t_stack *s2);
 void				b_simple_201(t_stack *s1, t_stack *s2);
+void				b_simple_210(t_stack *s1, t_stack *s2);
 
 # endif

@@ -1,20 +1,5 @@
 #include "push_swap.h"
 
-static void	set_buf_simple(int *buf, t_stack *s)
-{
-	int		i;
-	t_node	*temp;
-
-	i = 0;
-	temp = s->head;
-	while (i < 3)
-	{
-		buf[i++] = temp->num;
-		temp = temp->link;
-	}
-	buf[i] = '\0';
-}
-
 static void	check_012(int *s, t_stack *s1, t_stack *s2)
 {
 	char	size[4];
@@ -55,6 +40,8 @@ static void	check_210(int *s, t_stack *s1, t_stack *s2)
 		b_simple_120(s1, s2);
 	else if (!ft_strcmp(size, "312"))
 		b_simple_201(s1, s2);	
+	else if (!ft_strcmp(size, "321"))
+		b_simple_210(s1, s2);
 }
 
 static void	set_012(int *buf, char s, t_stack *s1, t_stack *s2)
@@ -88,12 +75,14 @@ void		sort_small(int n, t_stack *s1, t_stack *s2)
 {
 	int		pivot[1];
 	int		pb;
+	int		ra;
 
 	pb = 0;
-	pick_1_pivot(s1, pivot);
+	ra = 0;
+	pick_1_pivot(s1, pivot, n);
 	while (n--)
 	{
-		if (s1->head->num >= pivot[0])
+		if (s1->head->num >= pivot[0] && ra++)
 			ft_command_1(1, "ra", s1, s2);
 		else
 		{
@@ -101,13 +90,13 @@ void		sort_small(int n, t_stack *s1, t_stack *s2)
 			pb++;
 		}
 	}
-	if (s1->size == 2 && s1->head->num > s1->head->link->num)
+	if (ra == 2 && s1->head->num > s1->head->link->num)
 		ft_command_1(1, "sa", s1, s2);
-	else if (s1->size == 3)
+	else if (ra == 3)
 		simple_sort(s1, s2, 'a');
-	if (s2->size == 2 && s2->head->num < s2->head->link->num)
+	if (pb == 2 && s2->head->num < s2->head->link->num)
 		ft_command_1(1, "sb", s1, s2);
-	else if (s2->size == 3)
+	else if (pb == 3)
 		simple_sort(s1, s2, 'b');
 	while (pb--)
 		ft_command_1(1, "pa", s1, s2);
@@ -119,12 +108,12 @@ void		simple_sort(t_stack *s1, t_stack *s2, char st)
 
 	if (st == 'a')
 	{
-		set_buf_simple(buf, s1);
+		set_buf(buf, s1, 3);
 		set_012(buf, 'a', s1, s2);
 	}
 	else if (st == 'b')
 	{
-		set_buf_simple(buf, s2);
+		set_buf(buf, s2, 3);
 		set_012(buf, 'b', s1, s2);
 	}
 }

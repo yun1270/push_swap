@@ -10,7 +10,7 @@ int			main(int ac, char *av[])
 	set_stack(ac, av, a, b);
 
 	if (a->size == 1)
-		exit(0);
+		error();
 	check_buf(a);
 	if (a->size == 2)
 	{
