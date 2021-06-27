@@ -6,33 +6,11 @@
 /*   By: yujung <yujung@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/27 11:46:58 by yujung            #+#    #+#             */
-/*   Updated: 2021/06/27 15:39:26 by yujung           ###   ########.fr       */
+/*   Updated: 2021/06/27 18:54:31 by yujung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-void print_list(t_stack *s1, t_stack *s2)
-{
-	t_node *n;
-
-	printf("A => ");
-	n = s1->head;
-	while (n)
-	{
-		printf("%d | ",n->num);
-		n = n->link;
-	}
-	printf("\n B => ");
-
-	n = s2->head;
-	while (n)
-	{
-		printf("%d | ",n->num);
-		n = n->link;
-	}
-	printf("\n ");
-}
 
 void	rrr_ab(int ra, int rb, t_stack *s1, t_stack *s2)
 {

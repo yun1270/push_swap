@@ -71,6 +71,22 @@ static void	set_012(int *buf, char s, t_stack *s1, t_stack *s2)
 		check_210(size, s1, s2);
 }
 
+void		simple_sort(t_stack *s1, t_stack *s2, char st)
+{
+	int		buf[4];
+
+	if (st == 'a')
+	{
+		set_buf(buf, s1, 3);
+		set_012(buf, 'a', s1, s2);
+	}
+	else if (st == 'b')
+	{
+		set_buf(buf, s2, 3);
+		set_012(buf, 'b', s1, s2);
+	}
+}
+
 void		sort_small(int n, t_stack *s1, t_stack *s2)
 {
 	int		pivot[1];
@@ -100,20 +116,4 @@ void		sort_small(int n, t_stack *s1, t_stack *s2)
 		simple_sort(s1, s2, 'b');
 	while (pb--)
 		ft_command_1(1, "pa", s1, s2);
-}
-
-void		simple_sort(t_stack *s1, t_stack *s2, char st)
-{
-	int		buf[4];
-
-	if (st == 'a')
-	{
-		set_buf(buf, s1, 3);
-		set_012(buf, 'a', s1, s2);
-	}
-	else if (st == 'b')
-	{
-		set_buf(buf, s2, 3);
-		set_012(buf, 'b', s1, s2);
-	}
 }

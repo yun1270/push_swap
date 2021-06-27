@@ -21,7 +21,9 @@ typedef struct		s_stack
 	struct s_node	*head;
 }					t_stack;
 
-void print_list(t_stack *s1, t_stack *s2);
+// void print_list(t_stack *s1, t_stack *s2);
+
+// int					stack_is_sorted(t_stack *s1);
 
 /***** push_swap.c *****/
 // void				move_a_to_b(int n, int *pivot, t_stack *s1, t_stack *s2);
@@ -32,12 +34,11 @@ void				B_to_A(int n, t_stack *s1, t_stack *s2);
 void				A_to_B(int n, t_stack *s1, t_stack *s2);
 
 /***** utils.c *****/ // ok
-void				error();
-void				check_buf(t_stack *s);
+void				error(t_stack *s1, t_stack *s2);
+void				check_buf(t_stack *s1, t_stack *s2);
 // int				check_av(char *str);
 // int				ft_avlen(char **av);
 void				set_stack(int ac, char **av, t_stack *s1, t_stack *s2);
-int					stack_is_sorted(t_stack *s1);
 
 /***** pivot.c *****/ // ok
 void				sort_buf(int *buf, int size);
@@ -47,10 +48,10 @@ void				set_buf(int *buf, t_stack *s, int n);
 
 /***** command.c *****/ // ok
 void				push(int num, t_stack *s);
-void				push_to(t_stack *a, t_stack *b);
-void				swap(t_stack *s);
-void				rotate(t_stack *s);
-void				rev_rotate(t_stack *s);
+void				push_to(t_stack *s1, t_stack *s2);
+void				swap(t_stack *s, t_stack *s2);
+void				rotate(t_stack *s, t_stack *s2);
+void				rev_rotate(t_stack *s, t_stack *s2);
 
 /***** command_check.c *****/ // ok
 // void				print_command(char *str);

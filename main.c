@@ -10,8 +10,8 @@ int			main(int ac, char *av[])
 	set_stack(ac, av, a, b);
 
 	if (a->size == 1)
-		error();
-	check_buf(a);
+		error(a, b);
+	check_buf(a, b);
 	if (a->size == 2)
 	{
 		if (a->head->num > a->head->link->num)
@@ -23,6 +23,5 @@ int			main(int ac, char *av[])
 		sort_small(a->size, a, b);
 	else
 		A_to_B(a->size, a, b);
-	// print_list(a, b);
 	exit(0);
 }
