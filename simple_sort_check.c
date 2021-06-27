@@ -54,9 +54,7 @@ static void	check_210(int *s, t_stack *s1, t_stack *s2)
 	else if (!ft_strcmp(size, "231"))
 		b_simple_120(s1, s2);
 	else if (!ft_strcmp(size, "312"))
-		b_simple_201(s1, s2);
-	// print_list(s1,s2);
-	
+		b_simple_201(s1, s2);	
 }
 
 static void	set_012(int *buf, char s, t_stack *s1, t_stack *s2)
