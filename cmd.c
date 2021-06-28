@@ -1,9 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cmd.c                                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yujung <yujung@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/06/28 15:37:56 by yujung            #+#    #+#             */
+/*   Updated: 2021/06/28 16:05:09 by yujung           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 void		push(int num, t_stack *s)
 {
-	t_node	*newnode = malloc(sizeof(t_node));
+	t_node	*newnode;
 
+	newnode = malloc(sizeof(t_node));
 	newnode->num = num;
 	newnode->link = s->head;
 	s->head = newnode;

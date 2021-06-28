@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   simple_sort_check.c                                :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yujung <yujung@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/06/28 15:46:39 by yujung            #+#    #+#             */
+/*   Updated: 2021/06/28 16:09:28 by yujung           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 static void	check_012(int *s, t_stack *s1, t_stack *s2)
@@ -39,9 +51,13 @@ static void	check_210(int *s, t_stack *s1, t_stack *s2)
 	else if (!ft_strcmp(size, "231"))
 		b_simple_120(s1, s2);
 	else if (!ft_strcmp(size, "312"))
-		b_simple_201(s1, s2);	
+		b_simple_201(s1, s2);
 	else if (!ft_strcmp(size, "321"))
-		b_simple_210(s1, s2);
+	{
+		ft_command_1(1, "pa", s1, s2);
+		ft_command_1(1, "pa", s1, s2);
+		ft_command_1(1, "pa", s1, s2);
+	}
 }
 
 static void	set_012(int *buf, char s, t_stack *s1, t_stack *s2)
@@ -100,11 +116,8 @@ void		sort_small(int n, t_stack *s1, t_stack *s2)
 	{
 		if (s1->head->num >= pivot[0] && ++ra)
 			ft_command_1(1, "ra", s1, s2);
-		else
-		{
+		else if (!(s1->head->num >= pivot[0]) && ++pb)
 			ft_command_1(1, "pb", s1, s2);
-			pb++;
-		}
 	}
 	if (ra == 2 && s1->head->num > s1->head->link->num)
 		ft_command_1(1, "sa", s1, s2);
@@ -114,6 +127,7 @@ void		sort_small(int n, t_stack *s1, t_stack *s2)
 		ft_command_1(1, "sb", s1, s2);
 	else if (pb == 3)
 		simple_sort(s1, s2, 'b');
-	while (pb--)
+	if (!(pb == 3 && s2->size != 3))
+		while (--pb)
 			ft_command_1(1, "pa", s1, s2);
 }

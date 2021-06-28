@@ -19,6 +19,7 @@ SRCS = 	./libft/ft_strcmp.c\
 		push_swap.c\
 		pivot.c\
 		utils.c\
+		stack.c\
 		cmd.c\
 		cmd_check.c\
 		simple_sort_check.c\
@@ -39,6 +40,7 @@ SRCS_CK =	get_next_line/get_next_line.c\
 			checker.c\
 			pivot.c\
 			utils.c\
+			stack.c\
 			cmd.c\
 			cmd_check.c\
 

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   pivot.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yujung <yujung@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/06/28 15:41:10 by yujung            #+#    #+#             */
+/*   Updated: 2021/06/28 15:41:24 by yujung           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 void		sort_buf(int *buf, int size)
@@ -66,7 +78,6 @@ void		pick_1_pivot(t_stack *s, int *pivot, int n)
 	buf = malloc(sizeof(int) * (n + 1));
 	set_buf(buf, s, n);
 	sort_buf(buf, n);
-	// check_buf(buf);
 	if (n % 2 == 1)
 		pivot[0] = buf[n / 2 + 1];
 	else

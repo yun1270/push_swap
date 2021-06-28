@@ -1,17 +1,28 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yujung <yujung@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/06/28 15:37:58 by yujung            #+#    #+#             */
+/*   Updated: 2021/06/28 16:10:18 by yujung           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 int			main(int ac, char *av[])
 {
 	t_stack	*a;
 	t_stack	*b;
-	
+
 	a = malloc(sizeof(t_stack));
 	b = malloc(sizeof(t_stack));
 	set_stack(ac, av, a, b);
-
-	if (a->size == 1)
-		error(a, b);
 	check_buf(a, b);
+	if (stack_is_sorted(a) == 0 || a->size == 1)
+		exit(0);
 	if (a->size == 2)
 	{
 		if (a->head->num > a->head->link->num)
@@ -22,6 +33,6 @@ int			main(int ac, char *av[])
 	else if (a->size <= 6)
 		sort_small(a->size, a, b);
 	else
-		A_to_B(a->size, a, b);
+		a_to_b(a->size, a, b);
 	exit(0);
 }

@@ -6,7 +6,7 @@
 /*   By: yujung <yujung@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/27 11:46:58 by yujung            #+#    #+#             */
-/*   Updated: 2021/06/28 08:43:52 by yujung           ###   ########.fr       */
+/*   Updated: 2021/06/28 15:53:30 by yujung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,25 +33,6 @@ void	rrr_ab(int ra, int rb, t_stack *s1, t_stack *s2)
 	}
 	while (rr_cnt--)
 		ft_command_1(1, "rrr", s1, s2);
-
-}
-
-void	re(int n, int ra, int rb, int pa, int pb, t_stack *s1, t_stack *s2)
-{
-	if (n == 0)
-	{
-		rrr_ab(ra, rb, s1, s2);
-		A_to_B(ra, s1, s2);
-		B_to_A(rb, s1, s2);
-		B_to_A(pb - rb, s1, s2);
-	}
-	else if (n == 1)
-	{
-		A_to_B(pa - ra, s1, s2);
-		rrr_ab(ra, rb, s1, s2);
-		A_to_B(ra, s1, s2);
-		B_to_A(rb, s1, s2);
-	}
 }
 
 void	move_a_to_b(int n, int *pivot, t_stack *s1, t_stack *s2)
@@ -75,7 +56,10 @@ void	move_a_to_b(int n, int *pivot, t_stack *s1, t_stack *s2)
 				ft_command_1(1, "rb", s1, s2);
 		}
 	}
-	re(0, ra, rb, 0, pb, s1, s2);
+	rrr_ab(ra, rb, s1, s2);
+	a_to_b(ra, s1, s2);
+	b_to_a(rb, s1, s2);
+	b_to_a(pb - rb, s1, s2);
 }
 
 void	move_b_to_a(int n, int *pivot, t_stack *s1, t_stack *s2)
@@ -99,10 +83,13 @@ void	move_b_to_a(int n, int *pivot, t_stack *s1, t_stack *s2)
 				ft_command_1(1, "ra", s1, s2);
 		}
 	}
-	re(1, ra, rb, pa, 0, s1, s2);
+	a_to_b(pa - ra, s1, s2);
+	rrr_ab(ra, rb, s1, s2);
+	a_to_b(ra, s1, s2);
+	b_to_a(rb, s1, s2);
 }
 
-void	A_to_B(int n, t_stack *s1, t_stack *s2)
+void	a_to_b(int n, t_stack *s1, t_stack *s2)
 {
 	int	pivot[2];
 
@@ -118,7 +105,7 @@ void	A_to_B(int n, t_stack *s1, t_stack *s2)
 	move_a_to_b(n, pivot, s1, s2);
 }
 
-void	B_to_A(int n, t_stack *s1, t_stack *s2)
+void	b_to_a(int n, t_stack *s1, t_stack *s2)
 {
 	int	pivot[2];
 
