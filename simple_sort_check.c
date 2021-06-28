@@ -98,7 +98,7 @@ void		sort_small(int n, t_stack *s1, t_stack *s2)
 	pick_1_pivot(s1, pivot, n);
 	while (n--)
 	{
-		if (s1->head->num >= pivot[0] && ra++)
+		if (s1->head->num >= pivot[0] && ++ra)
 			ft_command_1(1, "ra", s1, s2);
 		else
 		{
@@ -115,5 +115,5 @@ void		sort_small(int n, t_stack *s1, t_stack *s2)
 	else if (pb == 3)
 		simple_sort(s1, s2, 'b');
 	while (pb--)
-		ft_command_1(1, "pa", s1, s2);
+			ft_command_1(1, "pa", s1, s2);
 }

@@ -46,12 +46,16 @@ void		pick_2_pivot(t_stack *s, int *pivot, int n)
 	buf = malloc(sizeof(int) * (n + 1));
 	set_buf(buf, s, n);
 	sort_buf(buf, n);
-	// check_buf(buf);
-	pivot[0] = buf[n / 3 + 1];
-	if (n % 2 == 1)
-		pivot[1] = buf[n / 3 * 2 - 1];
+	pivot[0] = buf[n / 3];
+	if (n / 3 == 1)
+		pivot[1] = buf[n / 3 + 1];
 	else
-		pivot[1] = buf[n / 3 * 2];
+	{
+		if (n % 2 == 1)
+			pivot[1] = buf[n / 3 * 2 - 1];
+		else
+			pivot[1] = buf[n / 3 * 2];
+	}
 	free(buf);
 }
 

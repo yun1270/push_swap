@@ -21,7 +21,7 @@ typedef struct		s_stack
 	struct s_node	*head;
 }					t_stack;
 
-// void print_list(t_stack *s1, t_stack *s2);
+void print_list(t_stack *s1, t_stack *s2);
 
 // int					stack_is_sorted(t_stack *s1);
 
@@ -67,6 +67,7 @@ void				sort_small(int n, t_stack *s1, t_stack *s2);
 void				simple_sort(t_stack *s1, t_stack *s2, char st);
 
 /***** simple_sort_a.c *****/ // ok
+void				ft_command_ss(int n, t_stack *s1, t_stack *s2);
 void				simple_021(t_stack *s1, t_stack *s2);
 void				simple_102(t_stack *s1, t_stack *s2);
 void				simple_120(t_stack *s1, t_stack *s2);

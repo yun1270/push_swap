@@ -2,6 +2,7 @@
     "files.associations": {
         "ratio": "c",
         "sstream": "c",
-        "push_swap.h": "c"
+        "push_swap.h": "c",
+        "random": "c"
     }
 }

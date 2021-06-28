@@ -1,26 +1,26 @@
 #include "push_swap.h"
 
-// void print_list(t_stack *s1, t_stack *s2)
-// {
-// 	t_node *n;
+void print_list(t_stack *s1, t_stack *s2)
+{
+	t_node *n;
 
-// 	printf("A => ");
-// 	n = s1->head;
-// 	while (n)
-// 	{
-// 		printf("%d | ",n->num);
-// 		n = n->link;
-// 	}
-// 	printf("\n B => ");
+	printf("A => ");
+	n = s1->head;
+	while (n)
+	{
+		printf("%d | ",n->num);
+		n = n->link;
+	}
+	printf("\n B => ");
 
-// 	n = s2->head;
-// 	while (n)
-// 	{
-// 		printf("%d | ",n->num);
-// 		n = n->link;
-// 	}
-// 	printf("\n ");
-// }
+	n = s2->head;
+	while (n)
+	{
+		printf("%d | ",n->num);
+		n = n->link;
+	}
+	printf("\n ");
+}
 
 void			del_stack(t_stack *s1, t_stack *s2)
 {

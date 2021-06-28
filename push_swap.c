@@ -6,7 +6,7 @@
 /*   By: yujung <yujung@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/27 11:46:58 by yujung            #+#    #+#             */
-/*   Updated: 2021/06/27 18:54:31 by yujung           ###   ########.fr       */
+/*   Updated: 2021/06/28 08:43:52 by yujung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,14 +106,12 @@ void	A_to_B(int n, t_stack *s1, t_stack *s2)
 {
 	int	pivot[2];
 
-	if (n <= 6)
+	if (n <= 3)
 	{
 		if (n == 2 && s1->head->num > s1->head->link->num)
 			ft_command_1(1, "sa", s1, s2);
 		else if (n == 3)
 			simple_sort(s1, s2, 'a');
-		else if (3 < n && n <= 6)
-			sort_small(n, s1, s2);
 		return ;
 	}
 	pick_2_pivot(s1, pivot, n);
