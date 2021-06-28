@@ -6,7 +6,7 @@
 /*   By: yujung <yujung@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/28 15:47:20 by yujung            #+#    #+#             */
-/*   Updated: 2021/06/28 16:00:51 by yujung           ###   ########.fr       */
+/*   Updated: 2021/06/28 20:55:09 by yujung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,8 @@
 void			error(t_stack *s1, t_stack *s2)
 {
 	ft_putstr_fd("Error\n", 2);
-	del_stack(s1, s2);
+	if (s1 && s2)
+		del_stack(s1, s2);
 	exit(1);
 }
 
@@ -26,7 +27,7 @@ int				check_av(char *str)
 	i = 0;
 	if (str[i] == '-' && ('0' <= str[i + 1] && str[i + 1] <= '9'))
 		i++;
-	if (str[i] == '-' && !('0' <= str[i + 1] && str[i + 1] <= '9'))
+	else if (str[i] == '-' && !('0' <= str[i + 1] && str[i + 1] <= '9'))
 		return (0);
 	while (str[i])
 	{
@@ -52,4 +53,5 @@ void			check_buf(t_stack *s1, t_stack *s2)
 		if (buf[i] == buf[i - 1])
 			error(s1, s2);
 	}
+	free(buf);
 }

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   push_swap.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yujung <yujung@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/06/28 16:12:36 by yujung            #+#    #+#             */
+/*   Updated: 2021/06/28 20:04:19 by yujung           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
@@ -21,64 +33,36 @@ typedef struct		s_stack
 	struct s_node	*head;
 }					t_stack;
 
-void print_list(t_stack *s1, t_stack *s2);
-
-/***** push_swap.c *****/
-// void				move_a_to_b(int n, int *pivot, t_stack *s1, t_stack *s2);
-// void				move_b_to_a(int n, int *pivot, t_stack *s1, t_stack *s2);
-// void				rrr_ab(int ra, int rb, t_stack *s1, t_stack *s2);
 void				b_to_a(int n, t_stack *s1, t_stack *s2);
 void				a_to_b(int n, t_stack *s1, t_stack *s2);
-
-/***** stack.c *****/ // ok
 int					stack_is_sorted(t_stack *s1);
 void				del_stack(t_stack *s1, t_stack *s2);
 void				set_stack(int ac, char **av, t_stack *s1, t_stack *s2);
-
-/***** utils.c *****/ // ok
 void				error(t_stack *s1, t_stack *s2);
 void				check_buf(t_stack *s1, t_stack *s2);
 int					check_av(char *str);
-
-
-/***** pivot.c *****/ // ok
 void				sort_buf(int *buf, int size);
 void				pick_2_pivot(t_stack *s, int *pivot, int n);
 void				pick_1_pivot(t_stack *s, int *pivot, int n);
 void				set_buf(int *buf, t_stack *s, int n);
-
-/***** command.c *****/ // ok
 void				push(int num, t_stack *s);
 void				push_to(t_stack *s1, t_stack *s2);
-void				swap(t_stack *s, t_stack *s2);
-void				rotate(t_stack *s, t_stack *s2);
-void				rev_rotate(t_stack *s, t_stack *s2);
-
-/***** command_check.c *****/ // ok
-// void				print_command(char *str);
+void				swap(int n, t_stack *s, t_stack *s2);
+void				rotate(int n, t_stack *s, t_stack *s2);
+void				rev_rotate(int n, t_stack *s, t_stack *s2);
 int					ft_command_1(int n, char *str, t_stack *s1, t_stack *s2);
 int					ft_command_2(int n, char *str, t_stack *s1, t_stack *s2);
-
-/***** simple_sort_check.c *****/ // ok
-// static void		check_012(int *s, t_stack *s1, t_stack *s2);
-// static void		check_210(int *s, t_stack *s1, t_stack *s2);
-// static void		set_012(int *buf, t_stack *s1, t_stack *s2);
 void				sort_small(int n, t_stack *s1, t_stack *s2);
 void				simple_sort(t_stack *s1, t_stack *s2, char st);
-
-/***** simple_sort_a.c *****/ // ok
 void				simple_021(t_stack *s1, t_stack *s2);
 void				simple_102(t_stack *s1, t_stack *s2);
 void				simple_120(t_stack *s1, t_stack *s2);
 void				simple_210(t_stack *s1, t_stack *s2);
 void				simple_201(t_stack *s1, t_stack *s2);
-
-/***** simple_sort_b.c *****/ // ok
 void				b_simple_012(t_stack *s1, t_stack *s2);
 void				b_simple_021(t_stack *s1, t_stack *s2);
 void				b_simple_102(t_stack *s1, t_stack *s2);
 void				b_simple_120(t_stack *s1, t_stack *s2);
 void				b_simple_201(t_stack *s1, t_stack *s2);
-// void				b_simple_210(t_stack *s1, t_stack *s2);
 
-# endif
+#endif

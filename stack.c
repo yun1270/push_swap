@@ -6,7 +6,7 @@
 /*   By: yujung <yujung@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/28 15:59:28 by yujung            #+#    #+#             */
-/*   Updated: 2021/06/28 16:01:36 by yujung           ###   ########.fr       */
+/*   Updated: 2021/06/28 20:55:42 by yujung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,24 +38,24 @@ void			del_stack(t_stack *s1, t_stack *s2)
 void			set_stack(int ac, char **av, t_stack *s1, t_stack *s2)
 {
 	int			i;
-	long long	num;
+	int			j;
+	int			num;
 
 	s1->size = 0;
 	s2->size = 0;
 	if (ac == 1)
-		error(s1, s2);
-	if (ac == 2 && ft_strchr(av[1], ' '))
+		exit(0);
+	j = 0;
+	if (ac == 2 && ft_strchr(av[1], ' ') && --j)
 		av = ft_split(av[1], ' ');
 	i = 0;
 	while (av[i])
 		i++;
-	while (--i > 0)
+	while (--i > j)
 	{
 		if (check_av(av[i]) == 0)
 			error(s1, s2);
 		num = ft_atoi(av[i]);
-		if (num < INT_MIN || num > INT_MAX)
-			error(s1, s2);
 		push(num, s1);
 	}
 }

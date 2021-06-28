@@ -6,7 +6,7 @@
 /*   By: yujung <yujung@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/28 15:37:47 by yujung            #+#    #+#             */
-/*   Updated: 2021/06/28 15:59:40 by yujung           ###   ########.fr       */
+/*   Updated: 2021/06/28 20:54:10 by yujung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,5 +37,6 @@ int			main(int ac, char *av[])
 		ft_putstr_fd("KO\n", 1);
 	else
 		ft_putstr_fd("OK\n", 1);
+	del_stack(a, b);
 	exit(0);
 }
